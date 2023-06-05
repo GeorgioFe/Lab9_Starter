@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "caaee27c59ed467e90cbb2c8764960cc"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,6 +110,133 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener('click',() => {
+      console.log("Console Log");
+    });
+    errorBtns[1].addEventListener('click',() => {
+      console.log("Console Error");
+      console.error("ERROR");
+    });
+    errorBtns[2].addEventListener('click',() => {
+      console.log("Console Count");
+      console.count('1');
+
+      console.count('2');
+      console.count('2');
+
+      console.count('3');
+      console.count('3');
+      console.count('3');
+
+      console.count('4');
+      console.count('4');
+      console.count('4');
+      console.count('4');
+    });
+    errorBtns[3].addEventListener('click',() => {
+      console.log("Console Warn");
+      console.warn('This is warning');
+    });
+    errorBtns[4].addEventListener('click',() => {
+      console.log("Console Assert");
+      console.assert(0 == 1, "Console Assert False 0!=1 nope not today and ");
+      console.assert(0 == 0, "Console Assert true 0=0 ");
+    });
+    errorBtns[5].addEventListener('click',() => {
+      console.log("Console Clear");
+      console.clear();
+    });
+    errorBtns[6].addEventListener('click',() => {
+      console.log("Console Dir");
+      console.dir([]);
+    });
+    errorBtns[7].addEventListener('click',() => {
+      console.log("Console dirxml");
+      console.dirxml(document)
+    });
+    errorBtns[8].addEventListener('click',() => {
+      console.log("Console Group Start");
+      console.group();
+      console.log("subgroup");
+      console.group();
+    });
+    errorBtns[9].addEventListener('click',() => {
+      console.log("Console Group End");
+      console.groupEnd();
+      console.log("subgroup close");
+      console.groupEnd();
+      console.log("Group end");
+    });
+    errorBtns[10].addEventListener('click',() => {
+      console.log("Console Table");
+      let agam = [{Name:'Georgio',LastName:'Feghali'}, {Name:'Harout',LastName:'Malyan'}];
+      console.table(agam);
+    });
+    errorBtns[11].addEventListener('click',() => {
+      console.log("Start Timer");
+      console.time('Start Timer');
+    });
+    errorBtns[12].addEventListener('click',() => {
+      console.log("End Timer");
+      console.timeEnd('End Timer');
+    });
+    errorBtns[13].addEventListener('click',() => {
+      console.log("Console Trace");
+      function first() {
+        function second() {
+          function third() {
+            console.trace();
+          }
+          third();
+        }
+        second();
+      }
+      first();
+    });
+    errorBtns[14].addEventListener('click',() => {
+      console.log("Trigger a Global Error");
+        let x = Math.random() * 10;
+        let mess = " you didnt win";
+        x= Math.floor(x);
+        console.log("the Random number is " + x);
+        try {
+          if(x == 5) {
+            throw "its 5 and its your lucky day today";
+            mess = " you did win";
+          }
+          else if(x < 5 ) {
+            throw "too low you are not that lucky today try again";  
+          }
+          else if(x > 5){ 
+            throw "too high try again";
+          }
+        }
+        catch(err) {
+         console.log("Random number " + x + " is " + err);
+        }
+        finally {
+          console.info('it looks like' + mess);
+        }
+    });
+    window.onerror = function () { 
+     document.getElementById('submitInput').onclick = function() {
+      var myInput = document.getElementById("textInput");
+      try {
+        console.log("input test");
+        JSON.parse(myInput);
+        console.log("input is a text");
+      } 
+      catch {
+        console.error("input not a text");
+      }
+      finally{
+     
+      console.error("onerror handerl");
+      return true;
+      }
+    };
+  };
+  TrackJS.track('Testing TrackJS!');
   </script>
 </body>
 
